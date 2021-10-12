@@ -12,16 +12,16 @@ export const Chart = () => {
   const stockData = useSelector(selectCharts)
 
   useEffect(() => {
-    if (period === '1' && percision.toString() === 'Minutes') {
+    if (period === '1' && percision === 'Minutes') {
       setTickIntervalVar(4)
     }
-    if (period === '5' && percision.toString() === 'Minutes') {
+    if (period === '5' && percision === 'Minutes') {
       setTickIntervalVar(6)
     }
-    if (period === '1' && percision.toString() === 'Hours') {
+    if (period === '1' && percision === 'Hours') {
       setTickIntervalVar(12)
     }
-    if (period === '168' && percision.toString() === 'Hours') {
+    if (period === '168' && percision === 'Hours') {
       setTickIntervalVar(24)
     }
   }, [period, percision])
