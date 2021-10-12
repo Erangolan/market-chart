@@ -8,26 +8,26 @@ import { selectCharts } from './ChartSlice'
 export const Chart = () => {
   const [tickIntervalVar, setTickIntervalVar] = useState(4)
   const period = useSelector((state) => state.chart.period)
-  const percision = useSelector((state) => state.chart.percision)
-  const stockData = useSelector(selectCharts)
+  const precision = useSelector((state) => state.chart.precision)
+  const chartData = useSelector(selectCharts)
 
   useEffect(() => {
-    if (period === '1' && percision === 'Minutes') {
+    if (period === '1' && precision === 'Minutes') {
       setTickIntervalVar(4)
     }
-    if (period === '5' && percision === 'Minutes') {
+    if (period === '5' && precision === 'Minutes') {
       setTickIntervalVar(6)
     }
-    if (period === '1' && percision === 'Hours') {
+    if (period === '1' && precision === 'Hours') {
       setTickIntervalVar(12)
     }
-    if (period === '168' && percision === 'Hours') {
+    if (period === '168' && precision === 'Hours') {
       setTickIntervalVar(24)
     }
-  }, [period, percision])
+  }, [period, precision])
 
   const options = {
-    title: { text: 'Apple Inc. Stocks' },
+    title: { text: 'Apple stock data' },
     xAxis: {
       tickInterval: tickIntervalVar * 3600 * 1000,
       type: 'datetime',
@@ -40,17 +40,17 @@ export const Chart = () => {
     legend: {
       enabled: false,
     },
-    series: [
-      {
-        name: 'Close Price',
-        data: stockData.map((dat) => [new Date(dat.Date).getTime(), dat.Close]),
-      },
-    ],
+    series: [{
+      data: chartData.map((item) => [new Date(item.Date).getTime(), item.Close]),
+    }],
   }
 
   return (
     <div>
-      <HighchartsReact highcharts={Highcharts} options={options} />
+      <HighchartsReact
+        highcharts={Highcharts}
+        options={options}
+      />
     </div>
   )
 }

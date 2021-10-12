@@ -6,9 +6,9 @@ import App from './App'
 import { store } from './app/store'
 import { Provider } from 'react-redux'
 import * as serviceWorker from './serviceWorker'
-import { getDataByTimestamp } from './features/charts/ChartSlice'
+import { fetchData } from './features/charts/ChartSlice'
 
-store.dispatch(getDataByTimestamp({ period: '5', percision: 'Minutes' }))
+store.dispatch(fetchData({ period: '1', precision: 'Minutes' }))
 
 ReactDOM.render(
   <React.StrictMode>
