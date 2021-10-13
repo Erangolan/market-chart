@@ -8,8 +8,8 @@ function App() {
 
   return (
     <div className="container">
-      <Timestamps />
       <Chart />
+      <Timestamps />
     </div>
   )
 }
