@@ -12,17 +12,13 @@ export const Chart = () => {
   const chartData = useSelector(selectCharts)
 
   useEffect(() => {
-    if (period === '1' && precision === 'Minutes') {
-      setTickIntervalVar(4)
-    }
-    if (period === '5' && precision === 'Minutes') {
-      setTickIntervalVar(6)
-    }
-    if (period === '1' && precision === 'Hours') {
-      setTickIntervalVar(12)
-    }
-    if (period === '168' && precision === 'Hours') {
-      setTickIntervalVar(24)
+    switch(precision) {
+    case ('Hours'):
+      setTickIntervalVar(period === '1' ? 12 : 168)
+      break
+    default:
+      setTickIntervalVar(period === '1' ? 4 : 6)
+      break
     }
   }, [period, precision])
 
